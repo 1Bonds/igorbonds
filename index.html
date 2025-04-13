@@ -3,71 +3,270 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Igor Bonds | Tecnologia da Informação</title>
+  <meta name="description" content="Portfólio profissional de Igor Bonds - Especialista em Tecnologia da Informação e Desenvolvimento">
+  <title>Igor Bonds | Especialista em TI e Desenvolvimento</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Header -->
   <header>
-    <img src="logo.png" alt="Logo Igor Bonds" class="logo">
-    <nav>
-      <ul>
-        <li><a href="#home">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#servicos">Serviços</a></li>
-        <li><a href="#portfolio">Portfólio</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <a href="#home" class="logo-link">
+        <img src="logo.png" alt="Logo Igor Bonds" class="logo">
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
   </header>
 
-  <section id="home">
-    <h1>Bem-vindo ao portfólio de Igor Bonds</h1>
-    <p>Soluções modernas em Tecnologia da Informação.</p>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Transformando ideias em soluções digitais</h1>
+        <p class="subtitle">Soluções personalizadas em Tecnologia da Informação para impulsionar seu negócio.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="btn btn-primary">Ver Projetos</a>
+          <a href="#contato" class="btn btn-secondary">Fale Comigo</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="hero-image.png" alt="Ilustração de desenvolvimento web">
+      </div>
+    </div>
   </section>
 
-  <section id="sobre">
-    <h2>Sobre</h2>
-    <p>Sou um profissional de TI com foco em soluções eficazes, inovação e qualidade. Apaixonado por tecnologia e movido por desafios.</p>
+  <!-- Sobre Mim -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <h2 class="section-title">Sobre Mim</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Sou um profissional de TI com mais de X anos de experiência, especializado em desenvolvimento de sistemas e infraestrutura de redes. Apaixonado por tecnologia e movido por desafios que transformam a vida das pessoas.</p>
+          <p>Minha abordagem combina conhecimento técnico sólido com uma visão estratégica para entregar soluções que realmente fazem a diferença.</p>
+        </div>
+        <div class="skills">
+          <div class="skill">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="skill">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+          </div>
+          <div class="skill">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-network-wired"></i>
+            <span>Redes</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-server"></i>
+            <span>Infraestrutura</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-headset"></i>
+            <span>Suporte Técnico</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="servicos">
-    <h2>Serviços</h2>
-    <ul>
-      <li>Suporte técnico</li>
-      <li>Desenvolvimento de sistemas</li>
-      <li>Consultoria em TI</li>
-      <li>Infraestrutura de redes</li>
-    </ul>
+  <!-- Serviços -->
+  <section id="servicos" class="section bg-light">
+    <div class="container">
+      <h2 class="section-title">Serviços</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-laptop-code service-icon"></i>
+          <h3>Desenvolvimento de Sistemas</h3>
+          <p>Soluções personalizadas para automatizar processos e melhorar a eficiência do seu negócio.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-network-wired service-icon"></i>
+          <h3>Infraestrutura de Redes</h3>
+          <p>Projeto, implementação e manutenção de redes corporativas seguras e eficientes.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-headset service-icon"></i>
+          <h3>Suporte Técnico</h3>
+          <p>Assistência especializada para resolver problemas técnicos e manter sua operação fluindo.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-chart-line service-icon"></i>
+          <h3>Consultoria em TI</h3>
+          <p>Orientação estratégica para alinhar tecnologia com seus objetivos de negócio.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="portfolio">
-    <h2>Portfólio</h2>
-    <p>Em breve, você poderá ver aqui alguns dos meus projetos.</p>
+  <!-- Portfólio -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2 class="section-title">Portfólio</h2>
+      <div class="portfolio-grid">
+        <div class="projeto-card">
+          <img src="projeto1.jpg" alt="Projeto 1" class="project-image">
+          <div class="project-info">
+            <h3>Sistema de Gestão</h3>
+            <p>Sistema completo para gestão de pequenas empresas.</p>
+            <a href="#" class="project-link">Ver Detalhes</a>
+          </div>
+        </div>
+        <div class="projeto-card">
+          <img src="projeto2.jpg" alt="Projeto 2" class="project-image">
+          <div class="project-info">
+            <h3>Infraestrutura de Rede</h3>
+            <p>Implantação de rede corporativa para empresa de médio porte.</p>
+            <a href="#" class="project-link">Ver Detalhes</a>
+          </div>
+        </div>
+        <div class="projeto-card">
+          <img src="projeto3.jpg" alt="Projeto 3" class="project-image">
+          <div class="project-info">
+            <h3>Site Institucional</h3>
+            <p>Desenvolvimento de site responsivo para clínica médica.</p>
+            <a href="#" class="project-link">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="depoimentos">
-    <h2>Depoimentos</h2>
-    <p>Aqui vamos colocar os comentários de clientes satisfeitos.</p>
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="section bg-light">
+    <div class="container">
+      <h2 class="section-title">Depoimentos</h2>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"O Igor transformou completamente nossa infraestrutura de TI, trazendo eficiência e segurança para nossas operações."</p>
+          </div>
+          <div class="testimonial-author">
+            <h4>João Silva</h4>
+            <p>Diretor Comercial, Empresa XYZ</p>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <p>"O sistema desenvolvido pelo Igor automatizou nossos processos e aumentou nossa produtividade em 40%."</p>
+          </div>
+          <div class="testimonial-author">
+            <h4>Maria Souza</h4>
+            <p>Gerente, ABC Consultoria</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="contato">
-    <h2>Contato</h2>
-    <p>Entre em contato por:</p>
-    <ul>
-      <li><a href="https://t.me/igorbonds" target="_blank">Telegram</a></li>
-      <li><a href="https://www.linkedin.com/in/igorbonds" target="_blank">LinkedIn</a></li>
-      <li><a href="https://wa.me/5565998036616" target="_blank">WhatsApp</a></li>
-    </ul>
+  <!-- Contato -->
+  <section id="contato" class="section">
+    <div class="container">
+      <h2 class="section-title">Contato</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Vamos conversar</h3>
+          <p>Estou disponível para novos projetos e oportunidades. Entre em contato através dos canais abaixo ou preencha o formulário.</p>
+          
+          <div class="contact-methods">
+            <a href="https://wa.me/5565998036616" class="contact-link" target="_blank">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://t.me/igorbonds" class="contact-link" target="_blank">
+              <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="https://www.linkedin.com/in/igorbonds" class="contact-link" target="_blank">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:seuemail@example.com" class="contact-link">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+        
+        <form class="contact-form">
+          <div class="form-group">
+            <input type="text" placeholder="Seu nome" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Seu email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Assunto">
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Igor Bonds - Todos os direitos reservados</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="logo.png" alt="Logo Igor Bonds" class="logo">
+          <p>Soluções em Tecnologia da Informação</p>
+        </div>
+        <div class="footer-links">
+          <h4>Links Rápidos</h4>
+          <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Redes Sociais</h4>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/igorbonds" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/1bonds" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://t.me/igorbonds" target="_blank"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
+      </div>
+    </div>
   </footer>
 
   <!-- Botão flutuante do WhatsApp -->
   <a href="https://wa.me/5565998036616" class="whatsapp-button" target="_blank" title="Fale comigo no WhatsApp">
-    💬
+    <i class="fab fa-whatsapp"></i>
   </a>
+
+  <script src="script.js"></script>
 </body>
 </html>
