@@ -138,25 +138,20 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
               'Accept': 'application/json'
             },
-            redirect: 'manual' // Handle redirects manually
+            redirect: 'manual'
           });
 
-          // Log response for debugging
           console.log('Response Status:', response.status);
           console.log('Response Headers:', response.headers);
 
-          // Formspree success typically returns a 200 status with a redirect
           if (response.status === 200) {
-            // Check if there's a redirect (Formspree often redirects on success)
             const location = response.headers.get('location');
             if (location) {
-              // Redirect indicates success in Formspree's case
               alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
               contactForm.reset();
               return;
             }
 
-            // If no redirect, try parsing JSON
             const data = await response.json();
             console.log('Response Body:', data);
             if (data.ok) {
@@ -166,12 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
               throw new Error('Resposta inesperada do servidor: ' + (data.error || 'Erro desconhecido'));
             }
           } else if (response.status === 0) {
-            // Status 0 can occur with CORS issues or redirects in some browsers
-            // Since the email was received, treat this as a success
             alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
             contactForm.reset();
           } else if (response.status === 422) {
-            // Formspree validation error (e.g., spam detection)
             const data = await response.json();
             throw new Error('Erro de validação no servidor: ' + (data.error || 'Verifique os dados e tente novamente.'));
           } else {
@@ -195,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextButton = document.querySelector('.carousel-next');
   if (testimonials && prevButton && nextButton) {
     let index = 0;
-    const total = 2; // Number of testimonials
+    const total = 2;
     let interval;
 
     const updateCarousel = () => {
@@ -225,11 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
       startCarousel();
     });
 
-    // Pause on hover
     testimonials.parentElement.addEventListener('mouseenter', stopCarousel);
     testimonials.parentElement.addEventListener('mouseleave', startCarousel);
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft') {
         prevButton.click();
@@ -239,41 +229,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     startCarousel();
-  }
-
-  // Portfolio Lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImage = document.querySelector('.lightbox-image');
-  const lightboxCaption = document.querySelector('.lightbox-caption');
-  const lightboxClose = document.querySelector('.lightbox-close');
-  if (lightbox && lightboxImage && lightboxCaption && lightboxClose) {
-    document.querySelectorAll('.projeto-card').forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.classList.contains('botao')) return; // Skip if clicking link
-        const imgSrc = card.querySelector('.project-image').src;
-        const caption = card.querySelector('h3').textContent;
-        lightboxImage.src = imgSrc;
-        lightboxImage.alt = `Projeto: ${caption}`;
-        lightboxCaption.textContent = caption;
-        lightbox.classList.add('active');
-      });
-    });
-
-    lightboxClose.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('active');
-      }
-    });
-
-    // Keyboard close
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-        lightbox.classList.remove('active');
-      }
-    });
   }
 });
