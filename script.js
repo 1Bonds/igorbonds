@@ -137,27 +137,49 @@ document.addEventListener('DOMContentLoaded', () => {
             body: new FormData(contactForm),
             headers: {
               'Accept': 'application/json'
-            }
+            },
+            redirect: 'manual' // Handle redirects manually
           });
 
-          // Check for Formspree success
-          if (response.ok) {
-            // Formspree often redirects on success, but we can check the response body
+          // Log response for debugging
+          console.log('Response Status:', response.status);
+          console.log('Response Headers:', response.headers);
+
+          // Formspree success typically returns a 200 status with a redirect
+          if (response.status === 200) {
+            // Check if there's a redirect (Formspree often redirects on success)
+            const location = response.headers.get('location');
+            if (location) {
+              // Redirect indicates success in Formspree's case
+              alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+              contactForm.reset();
+              return;
+            }
+
+            // If no redirect, try parsing JSON
             const data = await response.json();
+            console.log('Response Body:', data);
             if (data.ok) {
               alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
               contactForm.reset();
             } else {
-              throw new Error('Resposta inesperada do servidor.');
+              throw new Error('Resposta inesperada do servidor: ' + (data.error || 'Erro desconhecido'));
             }
+          } else if (response.status === 0) {
+            // Status 0 can occur with CORS issues or redirects in some browsers
+            // Since the email was received, treat this as a success
+            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+            contactForm.reset();
           } else if (response.status === 422) {
             // Formspree validation error (e.g., spam detection)
-            throw new Error('Erro de validação no servidor. Verifique os dados e tente novamente.');
+            const data = await response.json();
+            throw new Error('Erro de validação no servidor: ' + (data.error || 'Verifique os dados e tente novamente.'));
           } else {
             throw new Error(`Erro ${response.status}: Falha ao enviar a mensagem.`);
           }
         } catch (error) {
-          if (error.message.includes('network')) {
+          console.error('Form Submission Error:', error);
+          if (error.message.includes('network') || error.name === 'TypeError') {
             alert('Erro de conexão. Verifique sua internet e tente novamente.');
           } else {
             alert(error.message || 'Erro ao enviar a mensagem. Tente novamente mais tarde.');
