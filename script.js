@@ -134,16 +134,34 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const response = await fetch(contactForm.action, {
             method: 'POST',
-            body: new FormData(contactForm)
+            body: new FormData(contactForm),
+            headers: {
+              'Accept': 'application/json'
+            }
           });
+
+          // Check for Formspree success
           if (response.ok) {
-            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
-            contactForm.reset();
+            // Formspree often redirects on success, but we can check the response body
+            const data = await response.json();
+            if (data.ok) {
+              alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+              contactForm.reset();
+            } else {
+              throw new Error('Resposta inesperada do servidor.');
+            }
+          } else if (response.status === 422) {
+            // Formspree validation error (e.g., spam detection)
+            throw new Error('Erro de validação no servidor. Verifique os dados e tente novamente.');
           } else {
-            throw new Error('Erro no servidor.');
+            throw new Error(`Erro ${response.status}: Falha ao enviar a mensagem.`);
           }
         } catch (error) {
-          alert('Erro ao enviar a mensagem. Verifique sua conexão e tente novamente.');
+          if (error.message.includes('network')) {
+            alert('Erro de conexão. Verifique sua internet e tente novamente.');
+          } else {
+            alert(error.message || 'Erro ao enviar a mensagem. Tente novamente mais tarde.');
+          }
         }
       }
     });
