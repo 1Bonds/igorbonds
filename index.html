@@ -1,905 +1,335 @@
-:root {
-  --primary-color: #00a78e;
-  --primary-dark: #008c76;
-  --secondary-color: #1E3A8A;
-  --light-color: #F3F4F6;
-  --dark-color: #343a40;
-  --text-color: #333;
-  --text-light: #5a6268;
-  --white: #FFFFFF;
-  --accent-color: #3B82F6;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --transition: all 0.3s ease-out;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.7;
-  color: var(--text-color);
-  background: var(--light-color);
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-section {
-  padding: 64px 0;
-}
-
-.section-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2.25rem;
-  text-align: center;
-  color: var(--secondary-color);
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--primary-color);
-  margin: 12px auto;
-}
-
-.bg-light {
-  background-color: var(--white);
-}
-
-/* Button Style */
-.botao {
-  display: inline-flex;
-  align-items: center;
-  background-color: var(--secondary-color);
-  color: var(--white);
-  padding: 10px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.botao:hover, .botao:focus {
-  background-color: var(--accent-color);
-  transform: scale(1.05);
-  box-shadow: var(--box-shadow);
-  outline: none;
-}
-
-.botao-secondary {
-  background-color: transparent;
-  color: var(--secondary-color);
-  border: 2px solid var(--secondary-color);
-}
-
-.botao-secondary:hover, .botao-secondary:focus {
-  background-color: var(--accent-color);
-  color: var(--white);
-  border-color: var(--accent-color);
-  transform: scale(1.05);
-}
-
-/* Loading Screen */
-#loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease;
-}
-
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid var(--accent-color);
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Header */
-header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background: var(--white);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
-  transition: var(--transition);
-}
-
-header.scrolled {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-}
-
-.logo {
-  height: 48px;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-}
-
-.nav-link {
-  margin-left: 24px;
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
-  transition: var(--transition);
-  position: relative;
-}
-
-.nav-link:hover, .nav-link.active, .nav-link:focus {
-  color: var(--primary-color);
-  outline: none;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary-color);
-  transition: var(--transition);
-}
-
-.nav-link:hover::after, .nav-link.active::after {
-  width: 100%;
-}
-
-.hamburger {
-  display: none;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-.hamburger span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--text-color);
-  margin: 5px 0;
-  transition: var(--transition);
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Hero Section */
-.hero-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-.hero .container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.hero-content {
-  flex: 1;
-  min-width: 280px;
-}
-
-.hero .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 24px;
-  color: var(--text-light);
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 12px;
-}
-
-.hero-image {
-  flex: 1;
-  text-align: center;
-  min-width: 280px;
-}
-
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  animation: float 3.5s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* Sobre Mim */
-.about-content {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.about-image {
-  flex: 1;
-  min-width: 280px;
-  text-align: center;
-}
-
-.about-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
-}
-
-.about-text {
-  flex: 1;
-  min-width: 280px;
-}
-
-.about-text p {
-  margin-bottom: 16px;
-  font-size: 1rem;
-}
-
-.skills {
-  flex: 1;
-  min-width: 280px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skill {
-  background: var(--white);
-  padding: 8px 16px;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  transition: var(--transition);
-  box-shadow: var(--box-shadow);
-}
-
-.skill:hover, .skill:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.skill i {
-  margin-right: 8px;
-  color: var(--primary-color);
-  font-size: 1.1rem;
-}
-
-.skill span {
-  font-weight: 500;
-}
-
-/* Serviços */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-}
-
-.service-card {
-  background: var(--white);
-  padding: 24px;
-  border-radius: 6px;
-  text-align: center;
-  transition: var(--transition);
-  box-shadow: var(--box-shadow);
-}
-
-.service-card:hover, .service-card:focus {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-}
-
-.service-icon {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 16px;
-}
-
-.service-card h3 {
-  margin-bottom: 12px;
-  color: var(--secondary-color);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.service-card p {
-  margin-bottom: 16px;
-}
-
-/* Portfólio */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.projeto-card {
-  background: var(--white);
-  border-radius: 6px;
-  overflow: hidden;
-  transition: var(--transition);
-  box-shadow: var(--box-shadow);
-  cursor: pointer;
-}
-
-.projeto-card:hover, .projeto-card:focus {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-}
-
-.project-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.projeto-card:hover .project-image {
-  transform: scale(1.05);
-}
-
-.project-info {
-  padding: 16px;
-  text-align: center;
-}
-
-.project-info h3 {
-  margin-bottom: 8px;
-  color: var(--secondary-color);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.project-info p {
-  margin-bottom: 12px;
-}
-
-/* Lightbox */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.lightbox.active {
-  display: flex;
-}
-
-.lightbox-image {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 6px;
-}
-
-.lightbox-caption {
-  color: var(--white);
-  margin-top: 16px;
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  color: var(--white);
-  font-size: 1.75rem;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.lightbox-close:hover, .lightbox-close:focus {
-  color: var(--accent-color);
-}
-
-/* Depoimentos */
-.testimonials-container {
-  position: relative;
-}
-
-.testimonials {
-  display: flex;
-  overflow: hidden;
-  transition: transform 0.5s ease;
-}
-
-.testimonial-card {
-  flex: 0 0 100%;
-  background: var(--white);
-  padding: 24px;
-  border-radius: 6px;
-  transition: var(--transition);
-  box-shadow: var(--box-shadow);
-}
-
-.testimonial-card:hover, .testimonial-card:focus {
-  transform: translateY(-4px);
-}
-
-.testimonial-avatar {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  margin-right: 16px;
-  object-fit: cover;
-}
-
-.testimonial-content {
-  flex: 1;
-  min-width: 200px;
-}
-
-.testimonial-content p {
-  font-style: italic;
-  margin-bottom: 16px;
-  color: var(--text-light);
-}
-
-.testimonial-author h4 {
-  color: var(--secondary-color);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.testimonial-author p {
-  font-size: 0.85rem;
-  color: var(--text-light);
-}
-
-.carousel-prev, .carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--secondary-color);
-  color: var(--white);
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: var(--transition);
-}
-
-.carousel-prev:hover, .carousel-next:hover,
-.carousel-prev:focus, .carousel-next:focus {
-  background: var(--accent-color);
-}
-
-.carousel-prev {
-  left: 8px;
-}
-
-.carousel-next {
-  right: 8px;
-}
-
-/* Contato */
-.contact-content {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.contact-info {
-  flex: 1;
-  min-width: 280px;
-}
-
-.contact-illustration {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 16px;
-  border-radius: 6px;
-}
-
-.contact-info h3 {
-  margin-bottom: 16px;
-  color: var(--secondary-color);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.contact-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.contact-link {
-  color: var(--primary-color);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: var(--transition);
-}
-
-.contact-link:hover, .contact-link:focus {
-  color: var(--accent-color);
-}
-
-.contact-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.contact-form {
-  flex: 1;
-  min-width: 280px;
-}
-
-.form-group {
-  margin-bottom: 16px;
-  position: relative;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--text-light);
-  border-radius: 6px;
-  font-size: 0.95rem;
-  transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 4px rgba(0, 167, 142, 0.2);
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-.error-message {
-  color: #dc3545;
-  font-size: 0.85rem;
-  display: none;
-  margin-top: 4px;
-}
-
-.form-group.invalid .error-message {
-  display: block;
-}
-
-.form-group.invalid input,
-.form-group.invalid textarea {
-  border-color: #dc3545;
-}
-
-.contact-form .botao {
-  width: 100%;
-}
-
-/* Footer */
-footer {
-  background: var(--secondary-color);
-  color: var(--white);
-  padding: 48px 16px 16px;
-}
-
-.footer-content {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.footer-logo .logo {
-  height: 56px;
-}
-
-.footer-logo p {
-  margin-top: 8px;
-  color: var(--text-light);
-}
-
-.footer-links h4,
-.footer-social h4 {
-  margin-bottom: 16px;
-  color: var(--white);
-  font-family: 'Montserrat', sans-serif;
-}
-
-.footer-links ul {
-  list-style: none;
-}
-
-.footer-links a {
-  color: var(--text-light);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 8px;
-  transition: var(--transition);
-}
-
-.footer-links a:hover, .footer-links a:focus {
-  color: var(--primary-color);
-}
-
-.social-icons {
-  display: flex;
-  gap: 12px;
-}
-
-.social-icons a {
-  color: var(--white);
-  font-size: 1.4rem;
-  transition: var(--transition);
-}
-
-.social-icons a:hover, .social-icons a:focus {
-  color: var(--primary-color);
-}
-
-.footer-bottom {
-  text-align: center;
-  margin-top: 32px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-bottom p {
-  color: var(--text-light);
-}
-
-/* WhatsApp Button */
-.whatsapp-button {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  background: #25D366;
-  color: var(--white);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.75rem;
-  box-shadow: var(--box-shadow);
-  transition: var(--transition);
-}
-
-.whatsapp-button:hover, .whatsapp-button:focus {
-  transform: scale(1.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-}
-
-/* Animations */
-.section {
-  opacity: 0;
-  transform: translateY(16px);
-  animation: fadeIn 0.8s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile Styles */
-body {
-  font-size: 16px;
-}
-
-.botao {
-  padding: 8px 20px;
-}
-
-.section-title {
-  font-size: 1.75rem;
-}
-
-.hero {
-  padding: 64px 16px;
-}
-
-.hero h1 {
-  font-size: 2rem;
-}
-
-.hero .subtitle {
-  font-size: 1rem;
-}
-
-.hero-buttons {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.nav-links {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 64px;
-  left: 0;
-  width: 100%;
-  background: var(--white);
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.nav-links.active {
-  display: flex;
-}
-
-.nav-link {
-  margin: 8px 0;
-  font-size: 1.1rem;
-}
-
-.hamburger {
-  display: block;
-}
-
-.about-content {
-  flex-direction: column;
-}
-
-.about-image {
-  order: -1;
-}
-
-.contact-content {
-  flex-direction: column;
-}
-
-.testimonial-card {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.testimonial-avatar {
-  margin-right: 0;
-  margin-bottom: 16px;
-}
-
-.service-card, .projeto-card, .testimonial-card {
-  padding: 16px;
-}
-
-.whatsapp-button {
-  width: 48px;
-  height: 48px;
-  font-size: 1.5rem;
-}
-
-.service-icon {
-  width: 48px;
-  height: 48px;
-}
-
-.lightbox-image {
-  max-width: 95%;
-}
-
-/* Desktop Styles */
-@media (min-width: 768px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav-links {
-    display: flex;
-    position: static;
-    background: none;
-    padding: 0;
-    box-shadow: none;
-  }
-
-  .nav-link {
-    margin-left: 24px;
-    font-size: 1rem;
-  }
-
-  .hero {
-    padding: 80px 20px;
-  }
-
-  .hero h1 {
-    font-size: 3.5rem;
-  }
-
-  .hero-buttons {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .about-content {
-    flex-direction: row;
-  }
-
-  .contact-content {
-    flex-direction: row;
-  }
-
-  .section-title {
-    font-size: 2.25rem;
-  }
-
-  .testimonials {
-    flex-direction: row;
-  }
-
-  .testimonial-card {
-    flex-direction: row;
-    text-align: left;
-  }
-
-  .testimonial-avatar {
-    margin-right: 16px;
-    margin-bottom: 0;
-  }
-
-  .carousel-prev, .carousel-next {
-    padding: 10px 14px;
-  }
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Igor Bonds - Soluções personalizadas em TI, desenvolvimento de sistemas e infraestrutura de redes em Cuiabá.">
+  <meta name="keywords" content="TI, desenvolvimento, redes, consultoria, suporte técnico, Cuiabá">
+  <meta property="og:title" content="Igor Bonds | Soluções em TI">
+  <meta property="og:description" content="Transformando ideias em soluções digitais em Cuiabá.">
+  <meta property="og:image" content="https://1bonds.github.io/igor-bonds-site/assets/hero-bg.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Igor Bonds | Soluções em TI e Desenvolvimento</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/logo.png" as="image">
+  <link rel="preload" href="assets/hero-bg.png" as="image">
+  <!-- Critical CSS -->
+  <style>
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 80px 20px; background: linear-gradient(135deg, #00a78e, #1E3A8A); }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+    .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; color: #1E3A8A; }
+  </style>
+  <!-- Google Analytics -->
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXX-X');
+  </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Igor Bonds",
+      "jobTitle": "Profissional de TI",
+      "url": "https://1bonds.github.io/igor-bonds-site/",
+      "sameAs": [
+        "https://www.linkedin.com/in/igorbonds",
+        "https://github.com/1bonds",
+        "https://t.me/igorbonds"
+      ]
+    }
+  </script>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading" role="status" aria-label="Carregando página">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Header -->
+  <header role="banner">
+    <div class="container">
+      <a href="#home" class="logo-link" aria-label="Página inicial">
+        <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo" loading="lazy">
+      </a>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+        </ul>
+        <button class="hamburger" aria-label="Abrir/fechar menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img src="assets/hero-bg.png" alt="Ambiente de tecnologia da informação" loading="lazy">
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <h1>Transformando ideias em soluções digitais</h1>
+        <p class="subtitle">Soluções personalizadas em Tecnologia da Informação para impulsionar seu negócio.</p>
+        <div class="hero-buttons">
+          <a href="#portfolio" class="botao">Ver Projetos</a>
+          <a href="#contato" class="botao botao-secondary">Fale Comigo</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="assets/hero-image.svg" alt="Ilustração de desenvolvimento web" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre Mim -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <h2 class="section-title">Sobre Mim</h2>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="assets/sobre-illustration.svg" alt="Ilustração de Igor Bonds trabalhando em TI" loading="lazy">
+        </div>
+        <div class="about-text">
+          <p>Sou um profissional de TI com mais de 10 anos de experiência, especializado em desenvolvimento de sistemas e infraestrutura de redes. Apaixonado por tecnologia e movido por desafios que transformam a vida das pessoas.</p>
+          <p>Minha abordagem combina conhecimento técnico sólido com uma visão estratégica para entregar soluções que realmente fazem a diferença.</p>
+        </div>
+        <div class="skills">
+          <div class="skill">
+            <i class="fab fa-js"></i>
+            <span>JavaScript</span>
+          </div>
+          <div class="skill">
+            <i class="fab fa-html5"></i>
+            <span>HTML5</span>
+          </div>
+          <div class="skill">
+            <i class="fab fa-css3-alt"></i>
+            <span>CSS3</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-network-wired"></i>
+            <span>Redes</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-server"></i>
+            <span>Infraestrutura</span>
+          </div>
+          <div class="skill">
+            <i class="fas fa-headset"></i>
+            <span>Suporte Técnico</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section id="servicos" class="section bg-light">
+    <div class="container">
+      <h2 class="section-title">Serviços</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <img src="assets/dev-web-icon.svg" alt="Ícone de desenvolvimento web" class="service-icon" loading="lazy">
+          <h3>Desenvolvimento Web</h3>
+          <p>Soluções personalizadas para automatizar processos e melhorar a eficiência do seu negócio.</p>
+          <a href="#contato" class="botao">Saiba Mais</a>
+        </div>
+        <div class="service-card">
+          <img src="assets/network-security-icon.svg" alt="Ícone de segurança de redes" class="service-icon" loading="lazy">
+          <h3>Segurança de Redes</h3>
+          <p>Projeto, implementação e manutenção de redes corporativas seguras e eficientes.</p>
+          <a href="#contato" class="botao">Saiba Mais</a>
+        </div>
+        <div class="service-card">
+          <img src="assets/support-icon.svg" alt="Ícone de suporte técnico" class="service-icon" loading="lazy">
+          <h3>Suporte Técnico</h3>
+          <p>Assistência especializada para resolver problemas técnicos e manter sua operação fluindo.</p>
+          <a href="#contato" class="botao">Saiba Mais</a>
+        </div>
+        <div class="service-card">
+          <img src="assets/backup-icon.svg" alt="Ícone de backup e recuperação" class="service-icon" loading="lazy">
+          <h3>Backup e Recuperação</h3>
+          <p>Soluções para proteger seus dados e garantir recuperação rápida em emergências.</p>
+          <a href="#contato" class="botao">Saiba Mais</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfólio -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <h2 class="section-title">Portfólio</h2>
+      <div class="portfolio-grid">
+        <div class="projeto-card" data-lightbox="mockup1">
+          <img src="assets/mockup1.png" alt="Mockup de sistema de gestão" class="project-image" loading="lazy">
+          <div class="project-info">
+            <h3>Sistema de Gestão</h3>
+            <p>Sistema completo para gestão de pequenas empresas.</p>
+            <a href="https://example.com/project1" class="botao" target="_blank">Ver Detalhes</a>
+          </div>
+        </div>
+        <div class="projeto-card" data-lightbox="mockup2">
+          <img src="assets/mockup2.png" alt="Mockup de aplicação web" class="project-image" loading="lazy">
+          <div class="project-info">
+            <h3>Aplicação Web</h3>
+            <p>Plataforma online para gestão de processos corporativos.</p>
+            <a href="https://example.com/project2" class="botao" target="_blank">Ver Detalhes</a>
+          </div>
+        </div>
+        <div class="projeto-card" data-lightbox="mockup3">
+          <img src="assets/mockup3.png" alt="Mockup de site institucional" class="project-image" loading="lazy">
+          <div class="project-info">
+            <h3>Site Institucional</h3>
+            <p>Site responsivo para clínica médica com agendamento online.</p>
+            <a href="https://example.com/project3" class="botao" target="_blank">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Visualizar projeto">
+    <span class="lightbox-close" aria-label="Fechar">×</span>
+    <img class="lightbox-image" alt="Projeto em destaque">
+    <div class="lightbox-caption"></div>
+  </div>
+
+  <!-- Depoimentos -->
+  <section id="depoimentos" class="section bg-light">
+    <div class="container">
+      <h2 class="section-title">Depoimentos</h2>
+      <div class="testimonials-container" role="region" aria-label="Carrossel de depoimentos">
+        <div class="testimonials">
+          <div class="testimonial-card">
+            <img src="assets/avatar1.png" alt="Foto de João Silva" class="testimonial-avatar" loading="lazy">
+            <div class="testimonial-content">
+              <p>"O Igor transformou completamente nossa infraestrutura de TI, trazendo eficiência e segurança para nossas operações."</p>
+            </div>
+            <div class="testimonial-author">
+              <h4>João Silva</h4>
+              <p>Diretor Comercial, Empresa XYZ</p>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <img src="assets/avatar2.png" alt="Foto de Maria Souza" class="testimonial-avatar" loading="lazy">
+            <div class="testimonial-content">
+              <p>"O sistema desenvolvido pelo Igor automatizou nossos processos e aumentou nossa produtividade em 40%."</p>
+            </div>
+            <div class="testimonial-author">
+              <h4>Maria Souza</h4>
+              <p>Gerente, ABC Consultoria</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-prev" aria-label="Depoimento anterior">❮</button>
+        <button class="carousel-next" aria-label="Próximo depoimento">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="section">
+    <div class="container">
+      <h2 class="section-title">Contato</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <img src="assets/contact-illustration.svg" alt="Ilustração de suporte técnico" class="contact-illustration" loading="lazy">
+          <h3>Vamos conversar</h3>
+          <p>Estou disponível para novos projetos e oportunidades. Entre em contato através dos canais abaixo ou preencha o formulário.</p>
+          <div class="contact-methods">
+            <a href="https://wa.me/5565998036616" class="contact-link" target="_blank">
+              <img src="assets/whatsapp-icon.svg" alt="Ícone de WhatsApp" class="contact-icon" loading="lazy"> WhatsApp
+            </a>
+            <a href="https://t.me/igorbonds" class="contact-link" target="_blank">
+              <img src="assets/telegram-icon.svg" alt="Ícone de Telegram" class="contact-icon" loading="lazy"> Telegram
+            </a>
+            <a href="https://www.linkedin.com/in/igorbonds" class="contact-link" target="_blank">
+              <img src="assets/linkedin-icon.svg" alt="Ícone de LinkedIn" class="contact-icon" loading="lazy"> LinkedIn
+            </a>
+            <a href="mailto:igorbondes@gmail.com" class="contact-link">
+              <img src="assets/email-icon.svg" alt="Ícone de Email" class="contact-icon" loading="lazy"> Email
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" action="https://formspree.io/f/xjkydkej" method="POST" novalidate>
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Seu nome" required aria-describedby="name-error">
+            <span id="name-error" class="error-message"></span>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Seu email" required aria-describedby="email-error">
+            <span id="email-error" class="error-message"></span>
+          </div>
+          <div class="form-group">
+            <input type="text" name="subject" placeholder="Assunto" aria-describedby="subject-error">
+            <span id="subject-error" class="error-message"></span>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Sua mensagem" rows="5" required aria-describedby="message-error"></textarea>
+            <span id="message-error" class="error-message"></span>
+          </div>
+          <button type="submit" class="botao">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo" loading="lazy">
+          <p>Soluções em Tecnologia da Informação</p>
+        </div>
+        <div class="footer-links">
+          <h4>Links Rápidos</h4>
+          <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Redes Sociais</h4>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/igorbonds" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/1bonds" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://t.me/igorbonds" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Igor Bonds. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <a href="https://wa.me/5565998036616" class="whatsapp-button" target="_blank" title="Fale comigo no WhatsApp" aria-label="Contato via WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
