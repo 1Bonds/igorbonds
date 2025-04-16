@@ -5,33 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Igor Bonds - Soluções personalizadas em TI, desenvolvimento de sistemas e infraestrutura de redes em Cuiabá.">
   <meta name="keywords" content="TI, desenvolvimento, redes, consultoria, suporte técnico, Cuiabá">
+  <meta property="og:title" content="Igor Bonds | Soluções em TI">
+  <meta property="og:description" content="Transformando ideias em soluções digitais em Cuiabá.">
+  <meta property="og:image" content="https://1bonds.github.io/igor-bonds-site/assets/hero-bg.png">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Igor Bonds | Soluções em TI e Desenvolvimento</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="preload" href="assets/logo.png" as="image">
+  <link rel="preload" href="assets/hero-bg.png" as="image">
+  <!-- Critical CSS -->
+  <style>
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 80px 20px; background: linear-gradient(135deg, #00a78e, #1E3A8A); }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; }
+    .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; color: #1E3A8A; }
+  </style>
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
+  <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-X"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-XXXXX-X');
   </script>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Igor Bonds",
+      "jobTitle": "Profissional de TI",
+      "url": "https://1bonds.github.io/igor-bonds-site/",
+      "sameAs": [
+        "https://www.linkedin.com/in/igorbonds",
+        "https://github.com/1bonds",
+        "https://t.me/igorbonds"
+      ]
+    }
+  </script>
 </head>
 <body>
   <!-- Loading Screen -->
-  <div id="loading">
+  <div id="loading" role="status" aria-label="Carregando página">
     <div class="spinner"></div>
   </div>
 
   <!-- Header -->
-  <header>
+  <header role="banner">
     <div class="container">
-      <a href="#home" class="logo-link">
-        <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo">
+      <a href="#home" class="logo-link" aria-label="Página inicial">
+        <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo" loading="lazy">
       </a>
-      <nav>
+      <nav role="navigation" aria-label="Menu principal">
         <ul class="nav-links">
           <li><a href="#home" class="nav-link active">Início</a></li>
           <li><a href="#sobre" class="nav-link">Sobre</a></li>
@@ -40,11 +68,11 @@
           <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
           <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
-        <div class="hamburger">
+        <button class="hamburger" aria-label="Abrir/fechar menu" aria-expanded="false">
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </button>
       </nav>
     </div>
   </header>
@@ -154,7 +182,7 @@
           <div class="project-info">
             <h3>Sistema de Gestão</h3>
             <p>Sistema completo para gestão de pequenas empresas.</p>
-            <a href="#" class="botao">Ver Detalhes</a>
+            <a href="https://example.com/project1" class="botao" target="_blank">Ver Detalhes</a>
           </div>
         </div>
         <div class="projeto-card" data-lightbox="mockup2">
@@ -162,7 +190,7 @@
           <div class="project-info">
             <h3>Aplicação Web</h3>
             <p>Plataforma online para gestão de processos corporativos.</p>
-            <a href="#" class="botao">Ver Detalhes</a>
+            <a href="https://example.com/project2" class="botao" target="_blank">Ver Detalhes</a>
           </div>
         </div>
         <div class="projeto-card" data-lightbox="mockup3">
@@ -170,7 +198,7 @@
           <div class="project-info">
             <h3>Site Institucional</h3>
             <p>Site responsivo para clínica médica com agendamento online.</p>
-            <a href="#" class="botao">Ver Detalhes</a>
+            <a href="https://example.com/project3" class="botao" target="_blank">Ver Detalhes</a>
           </div>
         </div>
       </div>
@@ -178,8 +206,8 @@
   </section>
 
   <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="lightbox-close">&times;</span>
+  <div id="lightbox" class="lightbox" role="dialog" aria-label="Visualizar projeto">
+    <span class="lightbox-close" aria-label="Fechar">×</span>
     <img class="lightbox-image" alt="Projeto em destaque">
     <div class="lightbox-caption"></div>
   </div>
@@ -188,27 +216,31 @@
   <section id="depoimentos" class="section bg-light">
     <div class="container">
       <h2 class="section-title">Depoimentos</h2>
-      <div class="testimonials">
-        <div class="testimonial-card">
-          <img src="assets/avatar1.png" alt="Foto de João Silva" class="testimonial-avatar" loading="lazy">
-          <div class="testimonial-content">
-            <p>"O Igor transformou completamente nossa infraestrutura de TI, trazendo eficiência e segurança para nossas operações."</p>
+      <div class="testimonials-container" role="region" aria-label="Carrossel de depoimentos">
+        <div class="testimonials">
+          <div class="testimonial-card">
+            <img src="assets/avatar1.png" alt="Foto de João Silva" class="testimonial-avatar" loading="lazy">
+            <div class="testimonial-content">
+              <p>"O Igor transformou completamente nossa infraestrutura de TI, trazendo eficiência e segurança para nossas operações."</p>
+            </div>
+            <div class="testimonial-author">
+              <h4>João Silva</h4>
+              <p>Diretor Comercial, Empresa XYZ</p>
+            </div>
           </div>
-          <div class="testimonial-author">
-            <h4>João Silva</h4>
-            <p>Diretor Comercial, Empresa XYZ</p>
+          <div class="testimonial-card">
+            <img src="assets/avatar2.png" alt="Foto de Maria Souza" class="testimonial-avatar" loading="lazy">
+            <div class="testimonial-content">
+              <p>"O sistema desenvolvido pelo Igor automatizou nossos processos e aumentou nossa produtividade em 40%."</p>
+            </div>
+            <div class="testimonial-author">
+              <h4>Maria Souza</h4>
+              <p>Gerente, ABC Consultoria</p>
+            </div>
           </div>
         </div>
-        <div class="testimonial-card">
-          <img src="assets/avatar2.png" alt="Foto de Maria Souza" class="testimonial-avatar" loading="lazy">
-          <div class="testimonial-content">
-            <p>"O sistema desenvolvido pelo Igor automatizou nossos processos e aumentou nossa produtividade em 40%."</p>
-          </div>
-          <div class="testimonial-author">
-            <h4>Maria Souza</h4>
-            <p>Gerente, ABC Consultoria</p>
-          </div>
-        </div>
+        <button class="carousel-prev" aria-label="Depoimento anterior">❮</button>
+        <button class="carousel-next" aria-label="Próximo depoimento">❯</button>
       </div>
     </div>
   </section>
@@ -237,18 +269,22 @@
             </a>
           </div>
         </div>
-        <form class="contact-form" action="https://formspree.io/f/xjkydkej" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/xjkydkej" method="POST" novalidate>
           <div class="form-group">
-            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="text" name="name" placeholder="Seu nome" required aria-describedby="name-error">
+            <span id="name-error" class="error-message"></span>
           </div>
           <div class="form-group">
-            <input type="email" name="email" placeholder="Seu email" required>
+            <input type="email" name="email" placeholder="Seu email" required aria-describedby="email-error">
+            <span id="email-error" class="error-message"></span>
           </div>
           <div class="form-group">
-            <input type="text" name="subject" placeholder="Assunto">
+            <input type="text" name="subject" placeholder="Assunto" aria-describedby="subject-error">
+            <span id="subject-error" class="error-message"></span>
           </div>
           <div class="form-group">
-            <textarea name="message" placeholder="Sua mensagem" rows="5" required></textarea>
+            <textarea name="message" placeholder="Sua mensagem" rows="5" required aria-describedby="message-error"></textarea>
+            <span id="message-error" class="error-message"></span>
           </div>
           <button type="submit" class="botao">Enviar Mensagem</button>
         </form>
@@ -257,11 +293,11 @@
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo">
+          <img src="assets/logo.png" alt="Logo Igor Bonds" class="logo" loading="lazy">
           <p>Soluções em Tecnologia da Informação</p>
         </div>
         <div class="footer-links">
@@ -277,9 +313,9 @@
         <div class="footer-social">
           <h4>Redes Sociais</h4>
           <div class="social-icons">
-            <a href="https://www.linkedin.com/in/igorbonds" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/1bonds" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://t.me/igorbonds" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.linkedin.com/in/igorbonds" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/1bonds" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://t.me/igorbonds" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
           </div>
         </div>
       </div>
@@ -290,7 +326,7 @@
   </footer>
 
   <!-- Botão flutuante do WhatsApp -->
-  <a href="https://wa.me/5565998036616" class="whatsapp-button" target="_blank" title="Fale comigo no WhatsApp">
+  <a href="https://wa.me/5565998036616" class="whatsapp-button" target="_blank" title="Fale comigo no WhatsApp" aria-label="Contato via WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
